@@ -1,8 +1,8 @@
-import { IOrder, IProduct, FormErrors, IOrderForm } from '../types';
+import { IOrder, ProductItem, FormErrors, IOrderForm } from '../types';
 import { Model } from './base/model';
 import { IAppState } from '../types';
 
-export class Product extends Model<IProduct> {
+export class Product extends Model<ProductItem> {
   id: string;
   description: string;
   image: string;
@@ -107,7 +107,7 @@ export class AppState extends Model<IAppState> {
     return this.basket.reduce((sum, next) => sum + next.price, 0);
   }
 
-  setStore(items: IProduct[]) {
+  setStore(items: ProductItem[]) {
     this.store = items.map((item) => new Product({ ...item, selected: false }, this.events));
     this.emitChanges('items:changed', { store: this.store });
   }

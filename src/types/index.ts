@@ -7,6 +7,16 @@ export interface ProductItem {
     price: number;
     selected: boolean;
 }
+export type CategoryType =
+  | 'другое'
+  | 'софт-скил'
+  | 'дополнительное'
+  | 'кнопка'
+  | 'хард-скил';
+
+export type CategoryMapping = {
+    [Key in CategoryType]: string;
+  };
 
 export interface ProductList {
     total : number;
@@ -61,9 +71,7 @@ export interface Error {
     error: string;
 }
 
-export type ContactsFormErrors = Partial<Record<keyof Contacts, string>>;
-
-export type AddressFormErrors =  Partial<Record<keyof OrderForm, string>>
+export type FormErrors = Partial<Record<keyof IOrderForm, string>>;
 
 export interface BasketModel {
     items: Set<string>;
@@ -95,12 +103,12 @@ export interface BasketComponent extends ModalComponent {
 
 export interface AddressComponent extends ModalComponent {
     toggle(payment: 'card' | 'cash'): void;
-    errors: AddressFormErrors;
+    errors: FormErrors;
     checkAddress(address: string): void;
 }
 
 export interface ContactsComponent extends ModalComponent {
-    errors: ContactsFormErrors;
+    errors: FormErrors;
     checkEmail(email: string): void;
     checkPhone(phone: string): void;
 }
@@ -123,7 +131,7 @@ export interface SucсessComponent extends Success {
         // Информация о заказе при покупке товара
         order: IOrder;
         // Ошибки при заполнении форм
-        formErrors: ContactsFormErrors| AddressFormErrors;
+        formErrors: FormErrors;
         // Метод для добавления товара в корзину
         addToBasket(value: ProductItem): void;
         // Метод для удаления товара из корзины
