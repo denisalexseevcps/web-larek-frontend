@@ -1,4 +1,4 @@
-import { IProduct } from '../types';
+import { ProductItem } from '../types';
 import { handlePrice } from '../utils/utils';
 import { Component } from './base/component';
 import { IEvents } from './base/events';
@@ -67,7 +67,7 @@ export class Basket extends Component<IBasket> {
   }
 }
 
-export interface IProductBasket extends IProduct {
+export interface IProductBasket extends ProductItem {
   id: string;
   index: number;
 }
