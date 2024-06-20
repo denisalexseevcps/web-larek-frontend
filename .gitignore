@@ -5,3 +5,5 @@ dist
 .idea
 .vscode
 *.log
+yarn.lock
+*.lock
