@@ -28,6 +28,14 @@ export interface Order {
     total: number;
 }
 
+export interface IOrder extends OrderForm, Contacts {
+    items: string[];    
+    total: number;
+  }
+
+export interface IOrderForm extends OrderForm, Contacts { }
+
+
 export interface OrderRequest extends OrderForm, Contacts {
     total: number,
     items: ProductItem['id'][];
@@ -58,7 +66,7 @@ export interface CardBasket {
 }
 
 export interface OrderForm {
-    payment: 'card' | 'cash';
+    payment: string;
     address: string;
 }
 
@@ -71,7 +79,7 @@ export interface Error {
     error: string;
 }
 
-export type FormErrors = Partial<Record<keyof IOrderForm, string>>;
+export type FormErrors = Partial<Record<keyof OrderRequest, string>>;
 
 export interface BasketModel {
     items: Set<string>;
@@ -117,73 +125,21 @@ export interface SucсessComponent extends Success {
     close(): void;
 } 
 
-/*
-  * Интерфейс описывающий внутренне состояние приложения
-    Используется для хранения карточек, корзины, заказа пользователя, ошибок
-    при вообще в формах
-    Так же имеет методы для работы с карточками и корзиной
-  * */
-    export interface IAppState {
-        // Корзина с товарами
-        basket: ProductItem[];
-        // Массив карточек товара
-        store: ProductItem[];
-        // Информация о заказе при покупке товара
-        order: IOrder;
-        // Ошибки при заполнении форм
-        formErrors: FormErrors;
-        // Метод для добавления товара в корзину
-        addToBasket(value: ProductItem): void;
-        // Метод для удаления товара из корзины
-        deleteFromBasket(id: string): void;
-        // Метод для полной очистки корзины
-        clearBasket(): void;
-        // Метод для получения количества товаров в корзине
-        getBasketAmount(): number;
-        // Метод для получения суммы цены всех товаров в корзине
-        getTotalBasketPrice(): number;
-        // Метод для добавления ID товаров в корзине в поле items для order
-        setItems(): void;
-        // Метод для заполнения полей email, phone, address, payment в order
-        setOrderField(field: keyof IOrderForm, value: string): void;
-        // Валидация форм для окошка "контакты"
-        validateContacts(): boolean;
-        // Валидация форм для окошка "заказ"
-        validateOrder(): boolean;
-        // Очистить order после покупки товаров
-        refreshOrder(): boolean;
-        // Метод для превращения данных, полученых с сервера в тип данных приложения
-        setStore(items: ProductItem[]): void;
-        // Метод для обновления поля selected во всех товарах после совершения покупки
-        resetSelected(): void;
-      }
-      
-      /*
-        * Интерфейс, описывающий поля заказа товара
-        * */
-      export interface IOrder {
-        // Массив ID купленных товаров
-        items: string[];
-      
-        // Способ оплаты
-        payment: string;
-      
-        // Сумма заказа
-        total: number;
-      
-        // Адрес доставки
-        address: string;
-      
-        // Электронная почта
-        email: string;
-      
-        // Телефон
-        phone: string;
-      }
-      
-      export interface IOrderForm {
-        payment: string;
-        address: string;
-        email: string;
-        phone: string;
-      }
+export interface IAppState {
+    basket: ProductItem[];
+    store: ProductItem[];
+    order: IOrder;
+    formErrors: FormErrors;
+    addToBasket(value: ProductItem): void;
+    deleteFromBasket(id: string): void;
+    clearBasket(): void;
+    getBasketAmount(): number;
+    getTotalBasketPrice(): number;
+    setItems(): void;
+    setOrderField(field: keyof IOrderForm, value: string): void;
+    validateContacts(): boolean;
+    validateOrder(): boolean;
+    refreshOrder(): boolean;
+    setStore(items: ProductItem[]): void;
+    resetSelected(): void;
+}
