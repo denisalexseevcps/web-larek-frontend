@@ -2,26 +2,16 @@
 import { IEvents } from './base/events';
 import { Form } from './common/form';
 
-/*
-  * Интерфейс, описывающий окошко заказа товара
-  * */
-export interface IOrder {
-  // Адрес
-  address: string;
 
-  // Способ оплаты
+export interface IOrder {
+  address: string;
   payment: string;
 }
 
-/*
-  * Класс, описывающий окошко заказа товара
-  * */
 export class Order extends Form<IOrder> {
-  // Сссылки на внутренние элементы
   protected _card: HTMLButtonElement;
   protected _cash: HTMLButtonElement;
 
-  // Конструктор принимает имя блока, родительский элемент и обработчик событий
   constructor(
     protected blockName: string,
     container: HTMLFormElement,
@@ -48,7 +38,6 @@ export class Order extends Form<IOrder> {
     }
   }
 
-  // Метод, отключающий подсвечивание кнопок
   disableButtons() {
     this._cash.classList.remove('button_alt-active')
     this._card.classList.remove('button_alt-active')
