@@ -1,16 +1,16 @@
 export type PayMetod = 'cash' | 'card';
 
+export interface IBox {
+    items: string[];
+    total: number;
+}
+
 export interface IProduct {
     id: string;
     name: string;
     price: number | null;
     description: string;
     image: string;
-}
-
-export interface IBox {
-    items: string[];
-    total: number;
 }
 
 export interface IOrder {
