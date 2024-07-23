@@ -7,10 +7,11 @@ export interface IBox {
 
 export interface IProduct {
     id: string;
-    name: string;
+    title: string;
     price: number | null;
     description: string;
     image: string;
+    category: string;
 }
 
 export interface IOrder {
@@ -28,3 +29,12 @@ export interface IResultOrder {
     id: string;
     total: number;
 }
+
+export interface IProductItem {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    image: string;
+    price: number | null;
+  }

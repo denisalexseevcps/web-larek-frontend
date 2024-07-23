@@ -1,5 +1,5 @@
-import { IProduct, IBox, IOrder, OrderFrame, IResultOrder, PayMetod } from "../types";
-import {IEvents} from "./base/events"
+import { IProduct, IBox, IOrder, OrderFrame, IResultOrder, PayMetod } from "../../types";
+import {IEvents} from "../base/events"
 
 export class AppDate {
     catalog: IProduct[] = [];  
