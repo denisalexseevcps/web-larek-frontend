@@ -1,72 +1,48 @@
-export interface ProductItem {
-    id: string;
-    description: string;
-    image: string;
-    title: string;
-    category: string;
-    price: number;
-    selected: boolean;
-}
-export type CategoryType =
-  | 'другое'
-  | 'софт-скил'
-  | 'дополнительное'
-  | 'кнопка'
-  | 'хард-скил';
+export type PayMetod = 'cash' | 'card';
 
-export type CategoryMapping = {
-    [Key in CategoryType]: string;
-  };
-
-export interface ProductList {
-    total : number;
-    items: ProductItem[]; 
+export interface IBox {
+	items: string[];
+	total: number;
 }
 
-export interface IOrder extends OrderForm, Contacts {
-    items: string[];    
-    total: number;
-  }
-
-export interface IOrderForm extends OrderForm, Contacts { }
-
-
-export interface OrderRequest extends OrderForm, Contacts {
-    total: number,
-    items: ProductItem['id'][];
+export interface IProduct {
+	id: string;
+	title: string;
+	price: number | null;
+	description: string;
+	image: string;
+	category: string;
 }
 
-export interface OrderForm {
-    payment: string;
-    address: string;
+export interface IOrder {
+	payment: PayMetod;
+	email: string;
+	phone: string;
+	address: string;
+	total: number;
+	items: string[];
 }
 
-export interface Contacts {
-    email: string;
-    phone: string;
+export interface IOrderForm {
+	pay?: string;
+	address?: string;
+	phone?: string;
+	email?: string;
+	total?: string | number;
 }
 
-export interface Error {
-    error: string;
+export type OrderFrame = Omit<IOrder, 'total' | 'items'>;
+
+export interface IResultOrder {
+	id: string;
+	total: number;
 }
 
-export type FormErrors = Partial<Record<keyof OrderRequest, string>>;
-
-export interface IAppState {
-    basket: ProductItem[];
-    store: ProductItem[];
-    order: IOrder;
-    formErrors: FormErrors;
-    addToBasket(value: ProductItem): void;
-    deleteFromBasket(id: string): void;
-    clearBasket(): void;
-    getBasketAmount(): number;
-    getTotalBasketPrice(): number;
-    setItems(): void;
-    setOrderField(field: keyof IOrderForm, value: string): void;
-    validateContacts(): boolean;
-    validateOrder(): boolean;
-    refreshOrder(): boolean;
-    setStore(items: ProductItem[]): void;
-    resetSelected(): void;
+export interface IProductItem {
+	id: string;
+	title: string;
+	description: string;
+	category: string;
+	image: string;
+	price: number | null;
 }
