@@ -190,26 +190,26 @@ emmited.on('order:submit', () => {
 });
 
 emmited.on('contacts:submit', () => {
-	console.log(appData.order);
-	// magazine
-	// 	.orderProducts(appData.order)
-	// 	.then((result) => {
-	// 		console.log(appData.order);
-	// 		const success = new Success(cloneTemplate(successTl), {
-	// 			onClick: () => {
-	// 				modal.close();
-	// 				appData.clearBox(emmited);
-	// 				page.counter = appData.bskt.length;
-	// 			},
-	// 		});
+	//console.log(appData.order);
+	magazine
+		.orderProducts(appData.order)
+		.then((result) => {
+			//console.log(appData.order);
+			const success = new Success(cloneTemplate(successTl), {
+				onClick: () => {
+					modal.close();
+					appData.clearBox(emmited);
+					page.counter = appData.bskt.length;
+				},
+			});
 
-	// 		modal.render({
-	// 			content: success.render({
-	// 				total: appData.order.total,
-	// 			}),
-	// 		});
-	// 	})
-	// 	.catch((err) => {
-	// 		console.error(err);
-	// 	});
+			modal.render({
+				content: success.render({
+					total: appData.order.total,
+				}),
+			});
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 });
