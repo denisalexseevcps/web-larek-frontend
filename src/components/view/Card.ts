@@ -88,10 +88,10 @@ export class CardPreview extends Card<ICardPreview> {
 
 	set viewButton(value: string) {
 		if (value ===  null){
-			this._button.setAttribute('disabled', 'true');
+			this.setDisabled(this._button,true);
 		}
 		else {
-			this._button.removeAttribute('disabled');
+			this.setDisabled(this._button, false)
 		}
 	}
 }

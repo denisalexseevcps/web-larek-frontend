@@ -7,7 +7,7 @@ import { AppDate } from './components/data/AppDate';
 import { EventEmitter } from './components/base/events';
 import { Page } from './components/view/Page';
 import { Card, CardPreview, CardBox } from './components/view/Card';
-import { IProduct, IOrder, PayMetod, IOrderForm, OrderFrame } from './types';
+import { IProduct, IOrder, PayMetod, OrderFrame } from './types';
 import { Modal } from './components/view/Modal';
 import { Box } from './components/view/Box';
 import { Order, Сontacts } from './components/view/Order';

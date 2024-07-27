@@ -2,14 +2,9 @@ import {
 	IProduct,
 	IBox,
 	IOrder,
-	IOrderForm,
-	OrderFrame,
-	IResultOrder,
-	PayMetod,
 } from '../../types';
 import { ensureAllElements } from '../../utils/utils';
 import { IEvents } from '../base/events';
-import { Page } from '../view/Page';
 import { Form } from './Form';
 
 export class Order extends Form<IOrder> {
