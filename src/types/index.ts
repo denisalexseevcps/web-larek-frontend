@@ -23,26 +23,9 @@ export interface IOrder {
 	items: string[];
 }
 
-export interface IOrderForm {
-	pay?: string;
-	address?: string;
-	phone?: string;
-	email?: string;
-	total?: string | number;
-}
-
 export type OrderFrame = Omit<IOrder, 'total' | 'items'>;
 
 export interface IResultOrder {
 	id: string;
 	total: number;
-}
-
-export interface IProductItem {
-	id: string;
-	title: string;
-	description: string;
-	category: string;
-	image: string;
-	price: number | null;
 }
