@@ -11,6 +11,7 @@ interface ICard {
 	image: string;
 	price: number;
 	text: string;
+	viewButton: number;
 }
 
 export class Card<T> extends Component<ICard> {
@@ -32,7 +33,7 @@ export class Card<T> extends Component<ICard> {
 		this._category = ensureElement<HTMLElement>(`.card__category`, container);
 		this._image = ensureElement<HTMLImageElement>(`.card__image`, container);
 		this._price = ensureElement<HTMLElement>(`.card__price`, container);
-
+		
 		if (actions?.onClick) {
 			container.addEventListener('click', actions.onClick);
 		}
@@ -83,6 +84,15 @@ export class CardPreview extends Card<ICardPreview> {
 
 	set text(value: string) {
 		this.setText(this._text, value);
+	}
+
+	set viewButton(value: string) {
+		if (value ===  null){
+			this._button.setAttribute('disabled', 'true');
+		}
+		else {
+			this._button.removeAttribute('disabled');
+		}
 	}
 }
 

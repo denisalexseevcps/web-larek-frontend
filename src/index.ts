@@ -77,6 +77,7 @@ emmited.on('preview: change', (item: IProduct) => {
 			text: item.description,
 			price: item.price,
 			category: item.category,
+			viewButton: item.price, // Добавлено для недоступности Бесценных товаров
 		}),
 	});
 });
@@ -189,25 +190,26 @@ emmited.on('order:submit', () => {
 });
 
 emmited.on('contacts:submit', () => {
-	magazine
-		.orderProducts(appData.order)
-		.then((result) => {
-			console.log(appData.order);
-			const success = new Success(cloneTemplate(successTl), {
-				onClick: () => {
-					modal.close();
-					appData.clearBox(emmited);
-					page.counter = appData.bskt.length;
-				},
-			});
+	console.log(appData.order);
+	// magazine
+	// 	.orderProducts(appData.order)
+	// 	.then((result) => {
+	// 		console.log(appData.order);
+	// 		const success = new Success(cloneTemplate(successTl), {
+	// 			onClick: () => {
+	// 				modal.close();
+	// 				appData.clearBox(emmited);
+	// 				page.counter = appData.bskt.length;
+	// 			},
+	// 		});
 
-			modal.render({
-				content: success.render({
-					total: appData.order.total,
-				}),
-			});
-		})
-		.catch((err) => {
-			console.error(err);
-		});
+	// 		modal.render({
+	// 			content: success.render({
+	// 				total: appData.order.total,
+	// 			}),
+	// 		});
+	// 	})
+	// 	.catch((err) => {
+	// 		console.error(err);
+	// 	});
 });
